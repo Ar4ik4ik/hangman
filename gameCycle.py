@@ -26,7 +26,8 @@ def set_game():
     while mistakes_count != 6:
         print(' '.join(hidden_word))
         input_chr = input("Please enter the char: ").lower()
-        if not input_chr.isalpha():
+        code = ord(input_chr)
+        if not input_chr.isalpha() or (code < 1040 or code > 1103):
             continue
         if input_chr in exists_chrs:
             continue
@@ -51,33 +52,34 @@ def set_game():
     return
 
 
-def print_hangman(mistakes: int) -> str:
-    start_img = ("                  ._____\n"
-                 "                  |    |\n"
-                 "                  |     \n"
-                 "                  |     \n"
-                 "                  |     \n"
-                 "                  |")
+def print_hangman(mistakes: int):
+    start_img = ("          __._____\n"
+                 "            |    |\n"
+                 "            |     \n"
+                 "            |     \n"
+                 "            |     \n"
+                 "           /|\\\n"
+                 "===================")
     stripped_img = start_img.split('\n')
     if mistakes == 1:
-        stripped_img[2] = "                  |    o     "
+        stripped_img[2] = "            |    o     "
     elif mistakes == 2:
-        stripped_img[2] = "                  |    o     "
-        stripped_img[3] = "                  |    |     "
+        stripped_img[2] = "            |    o     "
+        stripped_img[3] = "            |    |     "
     elif mistakes == 3:
-        stripped_img[2] = "                  |    o     "
-        stripped_img[3] = "                  |   /|     "
+        stripped_img[2] = "            |    o     "
+        stripped_img[3] = "            |   /|     "
     elif mistakes == 4:
-        stripped_img[2] = "                  |    o     "
-        stripped_img[3] = "                  |   /|\\   "
+        stripped_img[2] = "            |    o     "
+        stripped_img[3] = "            |   /|\\   "
     elif mistakes == 5:
-        stripped_img[2] = "                  |    o     "
-        stripped_img[3] = "                  |   /|\\   "
-        stripped_img[4] = "                  |   /      "
+        stripped_img[2] = "            |    o     "
+        stripped_img[3] = "            |   /|\\   "
+        stripped_img[4] = "            |   /      "
     elif mistakes == 6:
-        stripped_img[2] = "                  |    o     "
-        stripped_img[3] = "                  |   /|\\   "
-        stripped_img[4] = "                  |   / \\   "
+        stripped_img[2] = "            |    o     "
+        stripped_img[3] = "            |   /|\\   "
+        stripped_img[4] = "            |   / \\   "
     print('\n'.join(stripped_img))
 
 
